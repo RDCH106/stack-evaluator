@@ -19,6 +19,16 @@ class TestInfix(unittest.TestCase):
         expression = self.infix.replace("2", "%v+( 10 *100     )")
         self.assertEqual(expression, "2 + ( 10 * 100 )")
 
+    def test_binaryOperators(self):
+        postfix = self.infix.infix_to_postfix("2 + 3")
+        self.assertEqual(postfix, "2 3 +")
+        postfix = self.infix.infix_to_postfix("2 - 3")
+        self.assertEqual(postfix, "2 3 -")
+        postfix = self.infix.infix_to_postfix("2 * 3")
+        self.assertEqual(postfix, "2 3 *")
+        postfix = self.infix.infix_to_postfix("2 / 3")
+        self.assertEqual(postfix, "2 3 /")
+
 
 if __name__ == '__main__':
     unittest.main(verbosity=2)
