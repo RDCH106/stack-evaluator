@@ -29,6 +29,20 @@ class TestInfix(unittest.TestCase):
         postfix = self.infix.infix_to_postfix("2 / 3")
         self.assertEqual(postfix, "2 3 /")
 
+    def test_binaryOperatorsPrecedence(self):
+        postfix = self.infix.infix_to_postfix("2 + 3 - 5")
+        self.assertEqual(postfix, "2 3 + 5 -")
+        postfix = self.infix.infix_to_postfix("2 - 3 * 5")
+        self.assertEqual(postfix, "2 3 5 * -")
+        postfix = self.infix.infix_to_postfix("2 * 3 / 5")
+        self.assertEqual(postfix, "2 3 * 5 /")
+        postfix = self.infix.infix_to_postfix("2 / 3 + 5")
+        self.assertEqual(postfix, "2 3 / 5 +")
+        postfix = self.infix.infix_to_postfix("1 + 2 - 3 + 4 - 5 + 6 - 7 + 8 - 9")
+        self.assertEqual(postfix, "1 2 + 3 - 4 + 5 - 6 + 7 - 8 + 9 -")
+        postfix = self.infix.infix_to_postfix("1 + 2 - 3 + 4 - 5 + 6 - 7 + 8 - 9 * 10")
+        self.assertEqual(postfix, "1 2 + 3 - 4 + 5 - 6 + 7 - 8 + 9 10 * -")
+
 
 if __name__ == '__main__':
     unittest.main(verbosity=2)
