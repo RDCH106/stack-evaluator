@@ -57,6 +57,18 @@ class TestInfix(unittest.TestCase):
         postfix = self.infix.infix_to_postfix("( ( 2 + 3 ) * 5 ) - ( - 10 )")
         self.assertEqual(postfix, "2 3 + 5 * 0 10 - -")
 
+    def test_unaryOperators(self):
+        postfix = self.infix.infix_to_postfix("( - 1 )")
+        self.assertEqual(postfix, "0 1 -")
+        postfix = self.infix.infix_to_postfix("- 1")
+        self.assertEqual(postfix, "0 1 -")
+        postfix = self.infix.infix_to_postfix("( - ( 2 * 3 ) )")
+        self.assertEqual(postfix, "0 2 3 * -")
+        postfix = self.infix.infix_to_postfix("- ( 2 * 3 )")
+        self.assertEqual(postfix, "0 2 3 * -")
+        postfix = self.infix.infix_to_postfix("1 + ( - ( 2 * 3 ) )")
+        self.assertEqual(postfix, "1 0 2 3 * - +")
+
 
 if __name__ == '__main__':
     unittest.main(verbosity=2)
