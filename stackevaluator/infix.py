@@ -20,9 +20,6 @@ class Infix:
     numbers_pattern = re.compile(OPERANDS)
     spaces_pattern = re.compile(EXTRA_SPACES)
 
-    def __init__(self, calibration=None):
-        self.calibration = calibration
-
     def replace(self, value, expression):
 
         for operator in self.OPERATORS:
