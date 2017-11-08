@@ -49,6 +49,14 @@ class TestPostfix(unittest.TestCase):
         result = self.postfix.postfix_eval("2 3 + 5 * 0 10 - -")
         self.assertEqual(result, "35")
 
+    def test_unaryOperators(self):
+        result = self.postfix.postfix_eval("0 1 -")
+        self.assertEqual(result, "-1")
+        result = self.postfix.postfix_eval("0 2 3 * -")
+        self.assertEqual(result, "-6")
+        result = self.postfix.postfix_eval("1 0 2 3 * - +")
+        self.assertEqual(result, "-5")
+
 
 if __name__ == '__main__':
     unittest.main(verbosity=2)
